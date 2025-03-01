@@ -66,10 +66,22 @@
             text-decoration: underline;
         }
         .logo {
-            max-width: 600px;
+            width:50%;
+            max-width: 500px;
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
+        @media (max-width: 768px) {
+            .logo {
+                width:70%;
+                max-width: 300px;
+            }
+        }
+        @media (max-width: 480px) {
+    .logo {
+        width: 80%;
+        max-width: 250px;
+    }
     </style>
 </head>
 <body>
