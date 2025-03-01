@@ -91,11 +91,19 @@
         <p>Step into the digital forefront and revolutionise opera for the information era. </p>
         <p>Embrace new technologies, push artistic boundaries, and craft immersive digital experiences that captivate audiences worldwide.</p>
         <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, add your email below.</p>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
-        <a class="patreon-link" href="https://www.patreon.com" target="_blank">Support us on Patreon</a>
+        <form id="emailForm">
+    <input type="email" id="emailInput" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</form>
+<p id="thankYouMessage" style="display: none; font-weight: bold; color: #fca311;">Thank you for subscribing!</p>
+        <a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
     </div>
+    <script>
+    document.getElementById("emailForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevents page reload
+        document.getElementById("emailForm").style.display = "none"; // Hides the form
+        document.getElementById("thankYouMessage").style.display = "block"; // Shows thank-you message
+    });
+</script>
 </body>
 </html>
