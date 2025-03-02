@@ -82,51 +82,26 @@
         width: 80%;
         max-width: 250px;
     }
-            #google-sheet-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-#google-sheet-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.gdpr-checkbox {
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #e63946;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #d62839;
-}
-
-#response-message {
-    margin-top: 10px;
-    font-size: 1rem;
-    color: #4CAF50;
-}
+    form {
+        max-width: 400px;
+        margin: auto;
+        background: #222;
+        padding: 20px;
+        border-radius: 8px;
+        }
+    input, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        }
+    .success, .error {
+        display: none;
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        }
+    .success { background: green; }
+    .error { background: red; }
 
     </style>
 </head>
@@ -137,6 +112,52 @@ button:hover {
         <p>Step into the digital forefront and revolutionise opera for the information era. </p>
         <p>Embrace new technologies, push artistic boundaries, and craft immersive digital experiences that captivate audiences worldwide.</p>
         <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, join our patreon.</p>
+<p>Stay updated on our latest projects. We respect your privacy and comply with GDPR.</p>
+
+<form id="signupForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <label>
+        <input type="checkbox" id="consent" required>
+        I consent to receiving updates via email.
+    </label>
+    <button type="submit">Subscribe</button>
+</form>
+
+<div class="success">Thank you for subscribing!</div>
+<div class="error">Something went wrong. Please try again.</div>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let consent = document.getElementById("consent").checked;
+
+    if (!consent) {
+        alert("You must agree to receive emails.");
+        return;
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbx5wB4MOT0qXSbE_VOjW0SJXNqq8ZBRR1vawnXp9D3tfrD7Bj4XyeErRCuop8ATJTOf_A/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.result === "success") {
+            document.querySelector(".success").style.display = "block";
+            document.querySelector(".error").style.display = "none";
+        } else {
+            document.querySelector(".error").style.display = "block";
+        }
+    })
+    .catch(error => {
+        document.querySelector(".error").style.display = "block";
+    });
+});
 </body>
 
 <a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
