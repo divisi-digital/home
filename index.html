@@ -96,42 +96,5 @@
         <p>Step into the digital forefront and revolutionise opera for the information era. </p>
         <p>Embrace new technologies, push artistic boundaries, and craft immersive digital experiences that captivate audiences worldwide.</p>
         <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, add your email below.</p>
-            
-<!-- Initial Subscribe Button -->
-<div id="initialForm">
-    <h2>Stay Updated with Divisi</h2>
-    <button class="btn" onclick="showNewForm()">Subscribe</button>
-</div>
-
-<!-- New Form (Initially Hidden) -->
-<div id="newForm" class="hidden">
-    <h1>Stay Updated with Divisi</h1>
-    <form target="_blank" action="https://formsubmit.co/divisi.dgtl@gmail.com" method="POST">
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" name="name" class="form-control" placeholder="Name" required>
-                </div>
-                <div class="col">
-                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn">Submit Form</button>
-    </form>
-</div>
-
-<!-- JavaScript for Smooth Fade-in Effect -->
-<script>
-    function showNewForm() {
-        document.getElementById("initialForm").style.display = "none";
-        const newForm = document.getElementById("newForm");
-        newForm.style.display = "block";
-        setTimeout(() => {
-            newForm.style.opacity = "1";
-        }, 10); // Delay to ensure transition works
-    }
-</script>
-
 </body>
 </html>
