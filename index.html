@@ -136,82 +136,8 @@ button:hover {
         alt="divisi.digital logo" class="logo">
         <p>Step into the digital forefront and revolutionise opera for the information era. </p>
         <p>Embrace new technologies, push artistic boundaries, and craft immersive digital experiences that captivate audiences worldwide.</p>
-        <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, add your email below.</p>
+        <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, join our patreon.</p>
 </body>
-
-  <form id="google-sheet-form">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    
-    <label class="gdpr-checkbox">
-        <input type="checkbox" required>
-        I agree to receive emails from divisi.
-    </label>
-
-    <button type="submit">Subscribe</button>
-    <p id="response-message"></p>
-</form>
-
-<script>
-document.getElementById("google-sheet-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Stop page reload
-
-    let formData = {
-        name: this.name.value,
-        email: this.email.value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbwQDvYq2SIxwRj9Y-YD6Rkp-7xFiI-O_4oLcgf6D_12CplOIyYj6SLYLlzbM_hKCDHgKA/exec", {  // Replace with your actual URL
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data.includes("Success")) {
-            document.getElementById("response-message").innerText = "Thank you for subscribing!";
-            this.reset();
-        } else {
-            document.getElementById("response-message").innerText = "Something went wrong. Try again.";
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        document.getElementById("response-message").innerText = "Something went wrong. Try again.";
-    });
-});
-</script>
-    <p class="gdpr-disclaimer">
-    We respect your privacy. By subscribing, you agree to receive emails from divisi.  
-    Your data will be stored securely and never shared.  
-    <a href="YOUR_PRIVACY_POLICY_URL">Read our Privacy Policy</a>.
-</p>
-<script>
-document.getElementById("google-sheet-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Stop page reload
-
-    let formData = {
-        name: this.name.value,
-        email: this.email.value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbwQDvYq2SIxwRj9Y-YD6Rkp-7xFiI-O_4oLcgf6D_12CplOIyYj6SLYLlzbM_hKCDHgKA/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("response-message").innerText = "Thank you for subscribing!";
-        this.reset(); // Clear the form
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        document.getElementById("response-message").innerText = "Something went wrong. Try again.";
-    });
-});
-</script>
-
 
 <a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
 </html>
