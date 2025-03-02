@@ -94,7 +94,13 @@
         <form id="emailForm">
     <input type="email" id="emailInput" placeholder="Enter your email" required>
     <button type="submit">Subscribe</button>
+            
 </form>
+        <form id="emailForm">
+    <input type="email" id="emailInput" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+</form>
+        
 <p id="thankYouMessage" style="display: none; font-weight: bold; color: #fca311;">Thank you for subscribing!</p>
         <a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
     </div>
@@ -105,5 +111,37 @@
         document.getElementById("thankYouMessage").style.display = "block"; // Shows thank-you message
     });
 </script>
+
+    <script>
+    document.getElementById("emailForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevents page reload
+
+        let email = document.getElementById("emailInput").value;
+        let mailchimpUrl = "https://us18.api.mailchimp.com/3.0/lists/da5a1596fa/members/";
+        let apiKey = "9dbc2d22afb473e66e837dec14627eaa-us18";
+        
+        let data = {
+            email_address: email,
+            status: "subscribed"
+        };
+
+        let response = await fetch(mailchimpUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Basic " + btoa("anystring:" + apiKey)
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            document.getElementById("emailForm").style.display = "none";
+            document.getElementById("thankYouMessage").style.display = "block";
+        } else {
+            alert("There was an error. Please try again.");
+        }
+    });
+</script>
+
 </body>
 </html>
