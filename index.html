@@ -189,7 +189,7 @@ document.getElementById("google-sheet-form").addEventListener("submit", function
         email: this.email.value
     };
 
-    fetch("YOUR_WEB_APP_URL", {
+    fetch("https://script.google.com/macros/s/AKfycbyuwLY1JIAWOQYWUfySYRQzYxb145a3kT3wFrZ8-KRC6ryhV4pO1k_ueIm-817rFNf7wg/exec", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" }
