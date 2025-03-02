@@ -82,11 +82,52 @@
         width: 80%;
         max-width: 250px;
     }
-    #newForm {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-    }
+            #google-sheet-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#google-sheet-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.gdpr-checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d62839;
+}
+
+#response-message {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #4CAF50;
+}
+
     </style>
 </head>
 <body>
@@ -98,16 +139,19 @@
         <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, add your email below.</p>
 </body>
 
-    <form id="google-sheet-form">
+   <form id="google-sheet-form">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
+    
     <label class="gdpr-checkbox">
         <input type="checkbox" required>
         I agree to receive emails from divisi.
     </label>
+
     <button type="submit">Subscribe</button>
     <p id="response-message"></p>
 </form>
+
 
 <script>
 document.getElementById("google-sheet-form").addEventListener("submit", function(event) {
@@ -136,6 +180,31 @@ document.getElementById("google-sheet-form").addEventListener("submit", function
     Your data will be stored securely and never shared.  
     <a href="YOUR_PRIVACY_POLICY_URL">Read our Privacy Policy</a>.
 </p>
+<script>
+document.getElementById("google-sheet-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Stop page reload
+
+    let formData = {
+        name: this.name.value,
+        email: this.email.value
+    };
+
+    fetch("YOUR_WEB_APP_URL", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("response-message").innerText = "Thank you for subscribing!";
+        this.reset(); // Clear the form
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("response-message").innerText = "Something went wrong. Try again.";
+    });
+});
+</script>
 
 
 <a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
