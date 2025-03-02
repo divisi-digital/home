@@ -20,6 +20,12 @@
             font-weight: 700;
             margin-top: 20vh;
         }
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 20vh;
+        }
         p {
             font-size: 1.2rem;
             font-weight: 300;
@@ -113,20 +119,23 @@
         <p>Embrace new technologies, push artistic boundaries, and craft immersive digital experiences that captivate audiences worldwide.</p>
         <p>Join us in shaping the future of opera through the power of digital innovation. If you want to stay updated with our projects, join our patreon.</p>
 <p>Stay updated on our latest projects. We respect your privacy and comply with GDPR.</p>
-</body>
+    
+<a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
+
+<h2>Join Our Mailing List</h2>
+<p>Stay updated with divisi! We respect your privacy and comply with GDPR.</p>
 
 <form id="signupForm">
     <input type="text" id="name" placeholder="Your Name" required>
     <input type="email" id="email" placeholder="Your Email" required>
     <label>
-        <input type="checkbox" id="consent" required>
-        I consent to receiving updates via email.
+        <input type="checkbox" id="consent" required> I consent to receiving emails.
     </label>
     <button type="submit">Subscribe</button>
 </form>
 
-<div class="success">Thank you for subscribing!</div>
-<div class="error">Something went wrong. Please try again.</div>
+<div id="successMessage" class="message success">Thank you for subscribing!</div>
+<div id="errorMessage" class="message error">Something went wrong. Try again.</div>
 
 <script>
 document.getElementById("signupForm").addEventListener("submit", function(e) {
@@ -141,25 +150,26 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
         return;
     }
 
-    fetch("https://script.google.com/macros/s/AKfycbx5wB4MOT0qXSbE_VOjW0SJXNqq8ZBRR1vawnXp9D3tfrD7Bj4XyeErRCuop8ATJTOf_A/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbznNKCWz7efGgY8AL4eJi8PV9e6aFjDaQuZBoHuS-a8AZGRI9ULqpYS_jOeQSY-3IcoaA/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.result === "success") {
-            document.querySelector(".success").style.display = "block";
-            document.querySelector(".error").style.display = "none";
+        if (data.status === "success") {
+            document.getElementById("successMessage").style.display = "block";
+            document.getElementById("errorMessage").style.display = "none";
         } else {
-            document.querySelector(".error").style.display = "block";
+            document.getElementById("errorMessage").style.display = "block";
         }
     })
     .catch(error => {
-        document.querySelector(".error").style.display = "block";
+        document.getElementById("errorMessage").style.display = "block";
     });
 });
 </script>
-    
-<a class="patreon-link" href="https://www.patreon.com/divisidigital" target="_blank">Support us on Patreon</a>
+
+</body>
+
 </html>
